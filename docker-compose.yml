@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  configuration_server:
+    image: configuration_server
+    build:
+      context: ./configuration_server
+    ports:
+      - "8888:8888"
+    networks:
+      - appointment-booking
+
+  discovery_service:
+    image: discovery_service
+    build:
+      context: ./discovery_service
+    ports:
+      - "8761:8761"
+    networks:
+      - appointment-booking
+
+networks:
+  appointment-booking:
+    driver: bridge
